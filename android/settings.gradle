@@ -1,0 +1,3 @@
+rootProject.name = 'codeUp9'
+
+include ':app'
