@@ -9,14 +9,6 @@ import { EMAIL_CHANGED,
     LOGIN_USER 
 } from './types';
 
-
-export const emailChanged = (text) => {
-    return {
-        type: EMAIL_CHANGED,    
-        payload: text
-    }
-}
-
 export const passwordChanged = (text) => {
     return {
         type: PASSWORD_CHANGED,
@@ -31,8 +23,8 @@ export const loginUser = ({ email, password }) => {
             .then(res => {
                  loginUserSuccess(dispatch, res.data);
             })
-        .catch((err) => {
-           console.log(err);
+        .catch(() => {
+           dispatch(loginUserFail(dispatch))
         });
     };
 };
@@ -41,6 +33,13 @@ export const loginUserFail = (dispatch) => {
     dispatch({
         type: LOGIN_USER_FAIL
     });
+};
+
+export const emailChanged = (text) => {
+    return {
+        type: EMAIL_CHANGED,    
+        payload: text
+    };
 };
 
 export const loginUserSuccess = (dispatch, user) => {

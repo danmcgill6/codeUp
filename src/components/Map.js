@@ -5,9 +5,7 @@ import Mapbox from '@mapbox/react-native-mapbox-gl';
 import { Button } from 'react-native-elements';
 import { viewMeetup } from '../actions';
 
-Mapbox.setAccessToken(
-  'pk.eyJ1IjoiZGFubWNnaWxsNiIsImEiOiJjamVsc2c2NWQyOTJ3MzNtb3dybThvbDY5In0.QcHuHWv9zyp5woGtNJGW3A'
-);
+Mapbox.setAccessToken(process.env.MAPBOX);
 
 export class Map extends Component {
 
@@ -15,6 +13,7 @@ export class Map extends Component {
     this.props.viewMeetup(meetup);
  }
   render() {
+    console.log(this.props.meetups);
   const markers = this.props.meetups.map(meetup => {
     return (
         <Mapbox.PointAnnotation
@@ -22,10 +21,11 @@ export class Map extends Component {
           id='pointAnnotation'
           coordinate={[parseFloat(meetup.lng), parseFloat(meetup.lat)]} >
           <View style={styles.annotationContainer}>
-            <Button style={styles.annotationFill} 
-                    color='#f0f' 
-                    text="M " 
-                    onPress={() => this.eventHandler(meetup)} 
+            <Button 
+              style={styles.annotationFill} 
+              color='#f0f' 
+              text="  " 
+              onPress={() => this.eventHandler(meetup)} 
             /> 
           </View>
           <Mapbox.Callout title='Look! An annotation!' />

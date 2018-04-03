@@ -1,11 +1,6 @@
 import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 
-    ATTEND_MEETUP,
-    LEAVE_MEETUP,
-} from './types';
-
-
 export const attend = (meetup) => {
     return {
         type: ADD_MEETUP,    

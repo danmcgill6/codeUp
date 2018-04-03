@@ -6,6 +6,7 @@ target 'codeUp9' do
   # use_frameworks!
     # Flexbox Layout Manager Used By React Natve
     pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
+    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
    
     # React Native
     pod 'React', path: '../node_modules/react-native', subspecs: [
