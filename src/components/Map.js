@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import { connect } from 'react-redux';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
 import { Button } from 'react-native-elements';
@@ -8,12 +8,31 @@ import { viewMeetup } from '../actions';
 Mapbox.setAccessToken(process.env.MAPBOX);
 
 export class Map extends Component {
+  constructor() {
+    super()
+    this.state = { latitude: 0, longitude: 0 };
+  }
 
- eventHandler(meetup) {
-    this.props.viewMeetup(meetup);
- }
+ componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position)
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+  })
+  .catch(err => console.log(err));
+}
+
+eventHandler(meetup) {
+  this.props.viewMeetup(meetup);
+}
+
   render() {
     console.log(this.props.meetups);
+    const filteredMeetups = this.props.meetups.filter(meetup => )
   const markers = this.props.meetups.map(meetup => {
     return (
         <Mapbox.PointAnnotation
@@ -37,7 +56,7 @@ export class Map extends Component {
         <Mapbox.MapView
             styleURL={Mapbox.StyleURL.Street}
             zoomLevel={10}
-            centerCoordinate={[-74.0060,40.7128]}
+            centerCoordinate={[this.state.longitude,this.state.latitude]}
             style={styles.container}>
             {markers}
         </Mapbox.MapView>
