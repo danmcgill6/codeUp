@@ -9,6 +9,7 @@ import Meetups from './components/Meetups';
 import PostMeetup from './components/PostMeetup';
 import Profile from './components/Profile';
 import SingleMeetup from './components/SingleMeetup';
+import UserProfile from './components/UserProfile';
 
 const RouterComponent = () => { 
     const TabIcon = ({ selected, title }) => {
@@ -45,6 +46,8 @@ const RouterComponent = () => {
                     </Scene>
                     <Scene key="postMeetup" component={PostMeetup} title="Create Meetup" />
                     <Scene key="singleMeetup" component={SingleMeetup} title="Meetup" />
+                    <Scene key="viewUser" component={UserProfile} title="Profile" />
+
                     </Scene>
             </Scene>
         </Router>

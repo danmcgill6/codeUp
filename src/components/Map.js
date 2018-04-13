@@ -8,18 +8,18 @@ import { viewMeetup } from '../actions';
 Mapbox.setAccessToken(process.env.MAPBOX);
 
 export class Map extends Component {
-  constructor() {
-    super()
-    this.state = { latitude: 0, longitude: 0 };
+  constructor(props) {
+    super(props);
+    this.state = { latitude: 40.7128, longitude: 74.0060 };
   }
 
  componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log(position)
+        console.log('position', position);
         this.setState({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          longitude: position.coords.longitude * -1,
           error: null,
         });
   })
@@ -32,13 +32,13 @@ eventHandler(meetup) {
 
   render() {
     console.log(this.props.meetups);
-    const filteredMeetups = this.props.meetups.filter(meetup => )
+    // const filteredMeetups = this.props.meetups.filter(meetup => )
   const markers = this.props.meetups.map(meetup => {
     return (
         <Mapbox.PointAnnotation
           key='pointAnnotation'
           id='pointAnnotation'
-          coordinate={[parseFloat(meetup.lng), parseFloat(meetup.lat)]} >
+          coordinate={[parseFloat(meetup.lng), parseFloat(meetup.lat)]}>
           <View style={styles.annotationContainer}>
             <Button 
               style={styles.annotationFill} 
@@ -47,7 +47,7 @@ eventHandler(meetup) {
               onPress={() => this.eventHandler(meetup)} 
             /> 
           </View>
-          <Mapbox.Callout title='Look! An annotation!' />
+        <Mapbox.Callout title='Look! An annotation!' />
       </Mapbox.PointAnnotation>
     );
  });
@@ -67,9 +67,7 @@ eventHandler(meetup) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 10,
-    borderRadius: 10
+    flex: 1
   },
   annotationContainer: {
     width: 30,

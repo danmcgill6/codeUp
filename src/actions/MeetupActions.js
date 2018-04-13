@@ -6,6 +6,7 @@ import {
     ADD_MEETUP,
     DELETE_MEETUP,
     EDIT_MEETUP,
+    VIEW_USER,
     VIEW_MEETUP ,
     ATTEND_MEETUP,
     LEAVE_MEETUP,
@@ -20,6 +21,14 @@ export const attendMeetup = (meetup, user) => {
             });
     }; 
 };
+
+export const viewUser = (userId) => {
+    return (dispatch) => {
+        axios.get(`http://localhost:8080/api/users/${userId}`)
+            .then(res => dispatch({ type: VIEW_USER, payload: res.data }));
+        Actions.viewUser();
+    }; 
+}
 
 export const createMeetup = (body) => {
     return (dispatch) => {
