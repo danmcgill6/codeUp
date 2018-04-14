@@ -37,9 +37,6 @@ export class Meetups extends Component {
              attending.length ? attending : 'You are not signed up for any meetups'
            }
          </ScrollView>
-         </Card>
-      
-         <Card>
            <Text style={styles.headerText}>Hosting</Text>
            <ScrollView>
              {

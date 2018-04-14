@@ -10,6 +10,7 @@ import PostMeetup from './components/PostMeetup';
 import Profile from './components/Profile';
 import SingleMeetup from './components/SingleMeetup';
 import UserProfile from './components/UserProfile';
+import EditProfile from './components/EditProfile';
 
 const RouterComponent = () => { 
     const TabIcon = ({ selected, title }) => {
@@ -47,6 +48,7 @@ const RouterComponent = () => {
                     <Scene key="postMeetup" component={PostMeetup} title="Create Meetup" />
                     <Scene key="singleMeetup" component={SingleMeetup} title="Meetup" />
                     <Scene key="viewUser" component={UserProfile} title="Profile" />
+                    <Scene key="editProfile" component={EditProfile} title="Edit Profile" />
 
                     </Scene>
             </Scene>
