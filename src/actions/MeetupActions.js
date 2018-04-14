@@ -11,10 +11,34 @@ import {
     LEAVE_MEETUP,
 } from './types';
 
-export const attendMeeetup = (meetup,user) => {
+export const attendMeetup = (meetup, user) => {
     return (dispatch) => {
-        axios.put(`http://localhost:8080/api/users/attending${user.id}`, { meetupId: meetup.id })
-            .then(res => Actions.map());
+        axios.put(`http://localhost:8080/api/users/attending/${user.id}`, { meetupId: meetup.id })
+            .then(res => {
+                dispatch({ type: ATTEND_MEETUP, payload: res.data });
+                Actions.meetups();
+            });
+    }; 
+};
+
+export const createMeetup = (body) => {
+    return (dispatch) => {
+        axios.post('http://localhost:8080/api/meetups', body)
+            .then(res => {
+                dispatch({ type: ADD_MEETUP, payload: res.data });
+                console.log(res.data);
+                Actions.map();
+            });
+    }; 
+};
+
+export const leaveMeetup = (meetup, user) => {
+    return (dispatch) => {
+        axios.put(`http://localhost:8080/api/users/leave/${user.id}`, { meetupId: meetup.id })
+            .then(res => {
+                dispatch({ type: LEAVE_MEETUP, payload: res.data[1] });
+                Actions.map();
+            });
     }; 
 };
 
@@ -25,7 +49,6 @@ export const viewMeetup = (meetup) => {
     }; 
 };
 
-//thunks
 export const fetchMeetupData = () => {
     return (dispatch) => {
         axios.get('http://localhost:8080/api/meetups')

@@ -41,6 +41,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNVectorIcons (4.5.0):
+    - React
   - yoga (0.54.1.React)
 
 DEPENDENCIES:
@@ -61,6 +63,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/Yoga.podspec`)
 
 EXTERNAL SOURCES:
@@ -68,14 +71,17 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native
   react-native-mapbox-gl:
     :path: ../node_modules/@mapbox/react-native-mapbox-gl
+  RNVectorIcons:
+    :path: ../node_modules/react-native-vector-icons
   yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga/Yoga.podspec
 
 SPEC CHECKSUMS:
   React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
   react-native-mapbox-gl: b42480060cdcc515dfa3d8e403fb4dd32466a1b9
+  RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 917c19d1502935918bdef2cc58cfb3bb6dd94695
+PODFILE CHECKSUM: 9a697d011bc60c5031b4b2d658fbc3a3137fe004
 
 COCOAPODS: 1.4.0

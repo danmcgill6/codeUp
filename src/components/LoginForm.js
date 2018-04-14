@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions/AuthActions';
 import { Card, CardSection, Button, Input, Spinner } from './common';
 
 
 export class LoginForm extends Component {
-    state = { email: '', password: '', error: '', loadin: false };
-    
+    state = { email: '', password: '', error: '', loading: false };
+
 
     onEmailChange(text) {
         this.props.emailChanged(text);
@@ -20,6 +20,8 @@ export class LoginForm extends Component {
         console.log(email, password);
         this.props.loginUser({ email, password });
     }
+  
+    
     renderError() {
         if (this.props.error) { 
             return (
@@ -31,6 +33,7 @@ export class LoginForm extends Component {
             );
         }
     }
+    
     renderButton() {
         if (this.props.loading) {
             return <Spinner size='large' />;

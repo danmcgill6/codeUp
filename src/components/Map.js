@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import { connect } from 'react-redux';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
 import { Button } from 'react-native-elements';
 import { viewMeetup } from '../actions';
 
-Mapbox.setAccessToken(
-  'pk.eyJ1IjoiZGFubWNnaWxsNiIsImEiOiJjamVsc2c2NWQyOTJ3MzNtb3dybThvbDY5In0.QcHuHWv9zyp5woGtNJGW3A'
-);
+Mapbox.setAccessToken(process.env.MAPBOX);
 
 export class Map extends Component {
+  constructor() {
+    super()
+    this.state = { latitude: 0, longitude: 0 };
+  }
 
- eventHandler(meetup) {
-    this.props.viewMeetup(meetup);
- }
+ componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position)
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+  })
+  .catch(err => console.log(err));
+}
+
+eventHandler(meetup) {
+  this.props.viewMeetup(meetup);
+}
+
   render() {
+    console.log(this.props.meetups);
+    const filteredMeetups = this.props.meetups.filter(meetup => )
   const markers = this.props.meetups.map(meetup => {
     return (
         <Mapbox.PointAnnotation
@@ -22,10 +40,11 @@ export class Map extends Component {
           id='pointAnnotation'
           coordinate={[parseFloat(meetup.lng), parseFloat(meetup.lat)]} >
           <View style={styles.annotationContainer}>
-            <Button style={styles.annotationFill} 
-                    color='#f0f' 
-                    text="M " 
-                    onPress={() => this.eventHandler(meetup)} 
+            <Button 
+              style={styles.annotationFill} 
+              color='#f0f' 
+              text="  " 
+              onPress={() => this.eventHandler(meetup)} 
             /> 
           </View>
           <Mapbox.Callout title='Look! An annotation!' />
@@ -37,7 +56,7 @@ export class Map extends Component {
         <Mapbox.MapView
             styleURL={Mapbox.StyleURL.Street}
             zoomLevel={10}
-            centerCoordinate={[-74.0060,40.7128]}
+            centerCoordinate={[this.state.longitude,this.state.latitude]}
             style={styles.container}>
             {markers}
         </Mapbox.MapView>

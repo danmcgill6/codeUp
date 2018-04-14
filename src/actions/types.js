@@ -10,3 +10,5 @@ export const DELETE_MEETUP = 'delete_meetup';
 export const EDIT_MEETUP = 'edit_meetup';
 export const SET_MEETUPS = 'set_meetups';
 export const VIEW_MEETUP = 'view_meetups';
+export const ATTEND_MEETUP = 'attend_meetup';
+export const LEAVE_MEETUP = 'leave_meetup';
