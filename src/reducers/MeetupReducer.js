@@ -1,8 +1,16 @@
-import { ADD_MEETUP,LEAVE_MEETUP, DELETE_MEETUP, EDIT_MEETUP, SET_MEETUPS, VIEW_MEETUP, ATTEND_MEETUP } from '../actions/types';
+import { ADD_MEETUP,
+    LEAVE_MEETUP, 
+    DELETE_MEETUP, 
+    EDIT_MEETUP, 
+    SET_MEETUPS, 
+    VIEW_MEETUP, 
+    ATTEND_MEETUP,
+    VIEW_USER } from '../actions/types';
 
 const INITIAL_STATE = {
     meetups: [],
-    viewMeetup: {}
+    viewMeetup: {},
+    viewedUser: {}
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,6 +30,8 @@ switch (action.type) {
         return { ...state, meetups: [...state.meetups.map(m => m.id === action.payload.id ? m = action.payload : m = m)]};
     case LEAVE_MEETUP:
         return { ...state, meetups: [...state.meetups.map(m => m.id === action.payload.id ? m = action.payload : m = m)]};
+    case VIEW_USER:
+        return { ...state, viewedUser: action.payload };
     default:
         return state;
  }

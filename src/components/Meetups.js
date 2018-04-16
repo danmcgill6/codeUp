@@ -38,14 +38,14 @@ export class Meetups extends Component {
            }
          </ScrollView>
          </Card>
-
+      
          <Card>
            <Text style={styles.headerText}>Hosting</Text>
-           <CardSection>
+           <ScrollView>
              {
-                hosting.length > 1 ? hosting : <Text>You are not hosting any meetups</Text>
+                hosting.length ? hosting : <Text>You are not hosting any meetups</Text>
              }
-           </CardSection>
+          </ScrollView>
          </Card>
       </View>
     );

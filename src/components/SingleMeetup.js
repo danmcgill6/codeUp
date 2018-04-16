@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Text, View, TouchableHighlight } from 'react-native';
 import { Button, Card, ListItem } from 'react-native-elements';
 import { CardSection } from './common';
-import { attendMeetup, leaveMeetup } from '../actions';
+import { attendMeetup, leaveMeetup, viewUser } from '../actions';
 
 export class SingletMeetup extends Component {
   constructor() {
@@ -38,7 +38,7 @@ export class SingletMeetup extends Component {
           );
   }
   renderAttending() {
-    console.log(this.props.viewMeetup.Users)
+    console.log(this.props.viewMeetup.Users);
     if (this.props.viewMeetup.Users) {
     const attending = this.props.viewMeetup.Users.map((user, i) => {
       return (
@@ -47,7 +47,7 @@ export class SingletMeetup extends Component {
           roundAvatar
           title={user.firstName + user.lastName}
           avatar={{ url: user.profileImage }}
-          onPress={() => console.log()}
+          onPress={() => this.props.viewUser(user.id)}
         />
        
       );
@@ -107,4 +107,4 @@ export class SingletMeetup extends Component {
    };
   };
 
-  export default connect(mapStateToProps, { attendMeetup, leaveMeetup })(SingletMeetup);
+  export default connect(mapStateToProps, { attendMeetup, leaveMeetup, viewUser })(SingletMeetup);

@@ -3,4 +3,5 @@ export {
     viewMeetup, 
     attendMeetup,
     createMeetup, 
-    leaveMeetup } from './MeetupActions';
+    leaveMeetup,
+    viewUser } from './MeetupActions';
