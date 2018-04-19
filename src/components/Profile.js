@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Avatar, Text, Divider } from 'react-native-elements';
+import { Avatar, Text, Divider, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import UserMeetups from './Meetups';
+import { Actions } from 'react-native-router-flux';
 
 export class Profile extends Component {
     render() {
@@ -24,6 +25,9 @@ export class Profile extends Component {
               <View style={styles.aboutUser}>
                 <Text style={styles.bio}>about user</Text>
               </View>
+        </View>
+        <View style={styles.iconContainer}>
+          <Button title='Edit' onPress ={ () => Actions.editProfile() } />
         </View>
         </View>
         <View style={styles.userMeetups}>
@@ -62,6 +66,10 @@ export class Profile extends Component {
     avatar: {
        backgroundColor: 'black',
        justifyContent: 'flex-end'
+    },
+    iconContainer: {
+      alignItems: 'flex-end',
+      marginRight: 15
     }
  
   };
